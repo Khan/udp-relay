@@ -32,10 +32,10 @@ Usage:
 
 
 
-void show_dump(unsigned char *data, unsigned int len, FILE *stream) {
+void show_dump(char *data, unsigned int len, FILE *stream) {
     const static char       hex[] = "0123456789abcdef";
-    static unsigned char    buff[67];   /* HEX  CHAR\n */
-    unsigned char           chr,
+    static char             buff[67];   /* HEX  CHAR\n */
+    char                    chr,
                             *bytes,
                             *p,
                             *limit,

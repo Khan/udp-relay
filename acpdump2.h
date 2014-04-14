@@ -165,7 +165,7 @@ void create_acp(FILE *fd) {
 
 
 
-void acp_dump(FILE *fd, int type, int protocol, uint32_t src_ip, uint16_t src_port, uint32_t dst_ip, uint16_t dst_port, uint8_t *data, int len, uint32_t *seq1, uint32_t *ack1, uint32_t *seq2, uint32_t *ack2) {
+void acp_dump(FILE *fd, int type, int protocol, uint32_t src_ip, uint16_t src_port, uint32_t dst_ip, uint16_t dst_port, char *data, int len, uint32_t *seq1, uint32_t *ack1, uint32_t *seq2, uint32_t *ack2) {
     ACPDUMP_LOCK_VAR
     struct {
         struct timevalx ts;
@@ -335,7 +335,7 @@ void acp_dump(FILE *fd, int type, int protocol, uint32_t src_ip, uint16_t src_po
 
 
 
-void acp_dump_handshake(FILE *fd, int type, int protocol, uint32_t src_ip, uint16_t src_port, uint32_t dst_ip, uint16_t dst_port, uint8_t *data, int len, uint32_t *seq1, uint32_t *ack1, uint32_t *seq2, uint32_t *ack2) {
+void acp_dump_handshake(FILE *fd, int type, int protocol, uint32_t src_ip, uint16_t src_port, uint32_t dst_ip, uint16_t dst_port, char *data, int len, uint32_t *seq1, uint32_t *ack1, uint32_t *seq2, uint32_t *ack2) {
     if(!fd) return;
     if(!seq1 || !ack1 || !seq2 || !ack2) return;
 

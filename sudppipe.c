@@ -60,7 +60,7 @@
                                 exit(1); \
                             }
     #define GETFUNC(x,y)    x = (void *)dlsym(hLib, y); \
-                            if(!quiet) printf("  %-10s %08x\n", y, (uint32_t)x);
+                            if(!quiet) printf("  %-10s %p\n", y, x);
                             //error = dlerror();
                             //if(error || !x) {
                                 //fprintf(stderr, "\nError: %s\n\n", error);
@@ -72,7 +72,7 @@
     #define SOCKET_ERROR    (-1)
 #endif
 
-typedef uint8_t     u8;
+typedef char        u8;
 typedef uint16_t    u16;
 typedef uint32_t    u32;
 
@@ -108,7 +108,7 @@ static int (* sudp_vis)(u8 *, int) = NULL;  // modification for visualization on
 //static int (*mybind)(SOCKET s, const struct sockaddr *name, int namelen) = NULL;
 //static int (*myclose)(SOCKET s) = NULL;
 //static int (*myrecv)(SOCKET s, char *buf, int len, int flags) = NULL;
-static int (*myrecvfrom)(SOCKET s, char *buf, int len, int flags, struct sockaddr *from, int *fromlen) = NULL;
+static int (*myrecvfrom)(SOCKET s, char *buf, int len, int flags, struct sockaddr *from, unsigned int *fromlen) = NULL;
 //static int (*mysend)(SOCKET s, char **retbuf, int len, int flags) = NULL;
 static int (*mysendto)(SOCKET s, char **retbuf, int len, int flags, const struct sockaddr *to, int tolen) = NULL;
 
@@ -158,11 +158,11 @@ int main(int argc, char *argv[]) {
             selsock     = 0,
             i,
             len         = 0,
-            psz         = 0,
             hexdump     = 0,
             t,
             everyone    = 0,
             priority    = 0;
+    unsigned int psz         = 0;
     u16     port,
             lport,
             inject      = 0;
